@@ -1,0 +1,23 @@
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import React, {memo, useEffect} from 'react';
+import {useMovieMethod} from '../Providers/MovieProvider';
+import {HomeScreen} from '../Screens/OtherScreens';
+
+const Stack = createStackNavigator();
+
+const Root = memo(() => {
+  const {fetch} = useMovieMethod();
+  useEffect(() => {
+    fetch('nowShowing', '/movie/now_playing');
+  }, []);
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+});
+
+export default Root;

@@ -10,10 +10,10 @@ import {baseUrl, apiKey, defaultTimeout} from '../Env/API';
 
 import {fetchError} from './Helpers/fetchError';
 
-const appStateContext = createContext({});
-const appMethodContext = createContext({});
+const movieStateContext = createContext({});
+const movieMethodContext = createContext({});
 
-const AppProvider = memo(props => {
+const MovieProvider = memo(props => {
   const {children} = props;
 
   const initialState = {
@@ -107,7 +107,7 @@ const AppProvider = memo(props => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const appState = useMemo(() => state, [state]);
+  const movieState = useMemo(() => state, [state]);
 
   onFetchCompleted = (category, movies) => {
     console.log(`category: ${category}`);
@@ -127,7 +127,7 @@ const AppProvider = memo(props => {
     });
   };
 
-  const appMethod = useMemo(
+  const movieMethod = useMemo(
     () => ({
       fetch: async (category, route) => {
         const {
@@ -170,27 +170,27 @@ const AppProvider = memo(props => {
   );
 
   return (
-    <appStateContext.Provider value={appState}>
-      <appMethodContext.Provider value={appMethod}>
+    <movieStateContext.Provider value={movieState}>
+      <movieMethodContext.Provider value={movieMethod}>
         {children}
-      </appMethodContext.Provider>
-    </appStateContext.Provider>
+      </movieMethodContext.Provider>
+    </movieStateContext.Provider>
   );
 });
-const useAppState = () => {
-  const context = useContext(appStateContext);
+const useMovieState = () => {
+  const context = useContext(movieStateContext);
   if (context === undefined) {
-    throw new Error('useAppState Error');
+    throw new Error('useMovieState Error');
   }
   return context;
 };
-const useAppMethod = () => {
-  const context = useContext(appMethodContext);
+const useMovieMethod = () => {
+  const context = useContext(movieMethodContext);
   if (context === undefined) {
-    throw new Error('useAppMethod Error');
+    throw new Error('useMovieMethod Error');
   }
   return context;
 };
 
-export default AppProvider;
-export {useAppState, useAppMethod};
+export default MovieProvider;
+export {useMovieState, useMovieMethod};
