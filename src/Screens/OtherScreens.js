@@ -19,21 +19,7 @@ const HomeScreen = memo(() => {
   );
 });
 
-const NowPlayingScreen = memo(() => {
-  return (
-    <View style={styles.dummy}>
-      <Text>Now Playing</Text>
-    </View>
-  );
-});
 
-const UpComingScreen = memo(() => {
-  return (
-    <View style={styles.dummy}>
-      <Text>Up Coming</Text>
-    </View>
-  );
-});
 
 const SearchScreen = memo(() => {
   return (
@@ -51,14 +37,7 @@ const MovieDetailScreen = memo(() => {
   );
 });
 
-export {
-  HomeScreen,
-  NowPlayingScreen,
-  
-  SearchScreen,
-  UpComingScreen,
-  MovieDetailScreen,
-};
+export {HomeScreen,  SearchScreen, MovieDetailScreen};
 
 const styles = StyleSheet.create({
   dummy: {

@@ -60,6 +60,22 @@ const MovieProvider = memo(props => {
             nowShowing: action.movies,
           },
         };
+      case 'comingSoon':
+        return {
+          ...prevState,
+          categories: {
+            ...prevState.categories,
+            comingSoon: action.movies,
+          },
+        };
+      case 'popular':
+        return {
+          ...prevState,
+          categories: {
+            ...prevState.categories,
+            popular: action.movies,
+          },
+        };
       case 'resetMovie':
         return {
           ...initialState,

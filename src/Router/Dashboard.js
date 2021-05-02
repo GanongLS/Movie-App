@@ -4,12 +4,10 @@ import {View} from 'react-native';
 import {Icon, normalize} from 'react-native-elements';
 import colors from '../Constants/colors';
 import {height} from '../Constants/constants';
-import {
-  NowPlayingScreen,
-  SearchScreen,
-  UpComingScreen,
-} from '../Screens/OtherScreens';
+import {NowPlayingScreen} from '../Screens/NowPlaying/NowPlayingScreen';
+import {SearchScreen} from '../Screens/OtherScreens';
 import {TopRateScreen} from '../Screens/TopRate/TopRateScreen';
+import {UpComingScreen} from '../Screens/UpComing/UpComingScreen';
 
 const Tab = createBottomTabNavigator();
 

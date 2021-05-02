@@ -1,24 +1,26 @@
-import React, {memo, useEffect, useState} from 'react';
-import {FlatList, Image, StyleSheet, View} from 'react-native';
-import {useMovieState} from '../../Providers/MovieProvider';
 import {isEmpty} from 'lodash';
+import React, {memo, useEffect, useState} from 'react';
+import {FlatList, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import colors from '../../Constants/colors';
 import {height, width} from '../../Constants/constants';
+import BlackGradient from './Gradient';
 
-const GridView = memo(() => {
+const GridView = memo(props => {
+  const {list} = props;
   const [dataSource, setDataSource] = useState([]);
-
-  const {
-    categories: {nowShowing},
-  } = useMovieState();
-  console.log({nowShowing});
 
   useEffect(() => {
     let items;
-    if (!isEmpty(nowShowing)) {
-      items = nowShowing.map((el, id) => {
+    if (!isEmpty(list)) {
+      items = list.map((el, id) => {
+        const path = el.backdrop_path;
         return {
           id,
-          src: `https://image.tmdb.org/t/p/w500${el.backdrop_path}`,
+          src: path
+            ? `https://image.tmdb.org/t/p/w500${path}`
+            : 'https://img.17qq.com/images/hsrshwuuwax.jpeg',
+          // src: `https://image.tmdb.org/t/p/w500${path}`,
+          movie: el,
         };
       });
     } else {
@@ -30,7 +32,7 @@ const GridView = memo(() => {
       });
     }
     setDataSource(items);
-  }, [nowShowing]);
+  }, [list]);
 
   return (
     <FlatList
@@ -39,16 +41,34 @@ const GridView = memo(() => {
       horizontal={false}
       data={dataSource}
       renderItem={({item}) => (
-        <View
+        <ImageBackground
+          source={{uri: item.src}}
           style={{
             flex: 1,
             flexDirection: 'column',
             margin: 5,
+            ...styles.imageThumbnail,
           }}>
-          <Image style={styles.imageThumbnail} source={{uri: item.src}} />
-        </View>
+          <BlackGradient>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'flex-end',
+                paddingBottom: 5,
+                paddingLeft: 10,
+              }}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: colors.white,
+                }}>
+                {item.movie ? item.movie.title : ''}
+              </Text>
+            </View>
+          </BlackGradient>
+        </ImageBackground>
       )}
-      //Setting the number of column
       numColumns={2}
       keyExtractor={(item, index) => index}
     />
@@ -63,6 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   imageThumbnail: {
+    resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
     height: width * 0.4,

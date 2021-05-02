@@ -13,10 +13,10 @@ const BlackGradient = memo(props => {
       end={{x: 0.5, y: 1.0}}
       style={{
         ...gradientStyle.container,
-        height: height ? height : screenHeight * 0.1,
+        height: height ? height : screenHeight * 0.06,
         ...style,
       }}>
-      <View>{props.children}</View>
+      {props.children}
     </LinearGradient>
   );
 });
@@ -25,6 +25,8 @@ const gradientStyle = StyleSheet.create({
   container: {
     width: '100%',
     zIndex: 0,
+    position: 'absolute',
+    bottom: 0,
   },
 });
 

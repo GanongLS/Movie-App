@@ -11,6 +11,8 @@ const Root = memo(() => {
   const {fetch} = useMovieMethod();
   useEffect(() => {
     fetch('nowShowing', '/movie/now_playing');
+    fetch('comingSoon', '/movie/upcoming')
+		fetch('popular', '/movie/popular')
   }, []);
   return (
     <NavigationContainer>
