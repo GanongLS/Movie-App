@@ -30,7 +30,7 @@ const NowPlayingScreen = memo(() => {
 const UpComingScreen = memo(() => {
   return (
     <View style={styles.dummy}>
-      <Text>Now Playing</Text>
+      <Text>Up Coming</Text>
     </View>
   );
 });

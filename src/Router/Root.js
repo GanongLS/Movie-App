@@ -15,7 +15,11 @@ const Root = memo(() => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Dashboard} />
+        <Stack.Screen
+          name="Home"
+          component={Dashboard}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
