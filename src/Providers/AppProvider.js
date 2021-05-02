@@ -17,28 +17,24 @@ const MovieProvider = memo(props => {
   const {children} = props;
 
   const initialState = {
-    categories: {
-      nowShowing: [],
-      comingSoon: [],
-      popular: [],
-    },
-    details: {},
-    cast: {
-      details: {},
-    },
+    isFetching: true,
+    isSearching: false,
   };
 
   const reducer = (prevState, action) => {
     switch (action.type) {
-      case 'nowShowing':
+      case 'fetch':
         return {
           ...prevState,
-          categories: {
-            ...prevState.categories,
-            nowShowing: action.movies,
-          },
+          isFetching: action.status,
         };
-      case 'resetMovie':
+      case 'search':
+        return {
+          ...prevState,
+          isSearching: action.status,
+        };
+
+      case 'resetRequest':
         return {
           ...initialState,
         };
