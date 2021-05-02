@@ -16,6 +16,7 @@ const Root = memo(() => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          // headerMode="none"
           name="Home"
           component={Dashboard}
           options={{headerShown: false}}

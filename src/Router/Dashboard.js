@@ -16,7 +16,6 @@ const Tab = createBottomTabNavigator();
 const Dashboard = memo(() => {
   return (
     <Tab.Navigator
-      headerMode="none"
       initialRouteName="TopRate"
       screenOptions={({route, navigation}) => ({
         tabBarIcon: ({focused, color, size}) => {
@@ -63,7 +62,7 @@ const Dashboard = memo(() => {
         },
         tabStyle: {
           height: height * 0.0883,
-          backgroundColor: 'white',
+          backgroundColor: colors.white,
           elevation: 10,
         },
         labelStyle: {

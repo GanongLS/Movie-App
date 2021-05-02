@@ -1,21 +1,28 @@
 import React, {memo} from 'react';
-import {View, Image, StyleSheet, SafeAreaView} from 'react-native';
+import {Image, SafeAreaView, StyleSheet, View, Text} from 'react-native';
 
-import FlatListExample from './FlatListExample';
+import GridView from './GridView';
 
 const TopRateScreen = memo(() => {
+  
   return (
-    <SafeAreaView style={styles.dummy}>
-      <DisplayAnImage />
-      <FlatListExample />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.title}>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>Top Rated Movie</Text>
+      </View>
+
+      <GridView />
     </SafeAreaView>
   );
 });
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 50,
-    paddingHorizontal: 50,
+    backgroundColor: 'white',
+  },
+  title: {
+    paddingVertical: 20,
+    paddingHorizontal: 20,
   },
   tinyLogo: {
     width: 50,
@@ -29,25 +36,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const DisplayAnImage = memo(() => {
-  return (
-    <View style={styles.container}>
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
-      <Image
-        style={styles.logo}
-        source={{
-          uri:
-            'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-        }}
-      />
-    </View>
-  );
-});
-
-export default DisplayAnImage;
 export {TopRateScreen};
