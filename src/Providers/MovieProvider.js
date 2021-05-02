@@ -26,6 +26,28 @@ const MovieProvider = memo(props => {
     cast: {
       details: {},
     },
+    config: {
+      apiKey: '',
+      image: {
+        secureBaseUrl: '',
+        numColumns: 3, // default
+        backdropSize: '',
+        posterSizeForBackground: '',
+        posterSizeForImageList: '',
+        profileSize: '',
+        stillSize: '',
+      },
+      style: {
+        posterSize: {},
+        backdropSize: {},
+        carousel: {},
+      },
+    },
+    settings: {
+      language: 'IN-hi',
+      region: 'IN',
+      theme: 'Dark',
+    },
   };
 
   const reducer = (prevState, action) => {

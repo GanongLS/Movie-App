@@ -19,7 +19,7 @@ import {
 import 'react-native-gesture-handler';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 
-const ScreenDummy = memo(() => {
+const DummyScreen = memo(() => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default DummyScreen;

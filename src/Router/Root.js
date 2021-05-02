@@ -2,7 +2,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {memo, useEffect} from 'react';
 import {useMovieMethod} from '../Providers/MovieProvider';
-import {HomeScreen} from '../Screens/OtherScreens';
+
+import {Dashboard} from './Dashboard';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,7 @@ const Root = memo(() => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={Dashboard} />
       </Stack.Navigator>
     </NavigationContainer>
   );
