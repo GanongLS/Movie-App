@@ -7,9 +7,9 @@ import {height} from '../Constants/constants';
 import {
   NowPlayingScreen,
   SearchScreen,
-  TopRateScreen,
   UpComingScreen,
 } from '../Screens/OtherScreens';
+import {TopRateScreen} from '../Screens/TopRate/TopRateScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,11 +26,11 @@ const Dashboard = memo(() => {
             iconName = focused ? 'star' : 'star-o';
             iconType = 'font-awesome';
           } else if (route.name === 'NowPlaying') {
-            iconName = focused ? 'play' : 'playcircleo';
-            iconType = 'antdesign';
+            iconName = focused ? 'md-play-circle' : 'md-play-circle-outline';
+            iconType = 'ionicon';
           } else if (route.name === 'UpComing') {
-            iconName = 'history';
-            iconType = focused ? 'font-awesome-5' : 'material-community';
+            iconName = 'update';
+            iconType = 'material';
           } else if (route.name === 'Search') {
             iconName = focused ? 'search' : 'search';
             iconType = 'ionicon';
@@ -41,7 +41,7 @@ const Dashboard = memo(() => {
               <Icon
                 type={iconType}
                 name={iconName}
-                size={normalize(25)}
+                size={normalize(27)}
                 color={color}
               />
             </View>

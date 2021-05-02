@@ -35,14 +35,6 @@ const UpComingScreen = memo(() => {
   );
 });
 
-const TopRateScreen = memo(() => {
-  return (
-    <View style={styles.dummy}>
-      <Text>Top Rate</Text>
-    </View>
-  );
-});
-
 const SearchScreen = memo(() => {
   return (
     <View style={styles.dummy}>
@@ -62,7 +54,7 @@ const MovieDetailScreen = memo(() => {
 export {
   HomeScreen,
   NowPlayingScreen,
-  TopRateScreen,
+  
   SearchScreen,
   UpComingScreen,
   MovieDetailScreen,
