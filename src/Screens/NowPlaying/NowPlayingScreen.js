@@ -6,15 +6,17 @@ import GridView from '../TopRate/GridView';
 
 const NowPlayingScreen = memo(() => {
   const {
-    categories: {NowShowing},
+    categories: {nowShowing},
   } = useMovieState();
-  console.log({NowShowing});
+  console.log({nowShowing});
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>Now Playing Movie</Text>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+          Now Playing Movie
+        </Text>
       </View>
-      <GridView list={NowShowing} />
+      <GridView list={nowShowing} />
     </SafeAreaView>
   );
 });

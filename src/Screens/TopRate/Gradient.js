@@ -10,10 +10,10 @@ const BlackGradient = memo(props => {
       {...attr}
       colors={['transparent', '#000000']}
       start={{x: 0.5, y: 0}}
-      end={{x: 0.5, y: 1.0}}
+      end={{x: 0.5, y: 0.8}}
       style={{
         ...gradientStyle.container,
-        height: height ? height : screenHeight * 0.06,
+        height: height ? height : screenHeight * 0.065,
         ...style,
       }}>
       {props.children}

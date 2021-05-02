@@ -18,8 +18,9 @@ const GridView = memo(props => {
           id,
           src: path
             ? `https://image.tmdb.org/t/p/w500${path}`
-            : 'https://img.17qq.com/images/hsrshwuuwax.jpeg',
-          // src: `https://image.tmdb.org/t/p/w500${path}`,
+            : // : 'https://img.17qq.com/images/hsrshwuuwax.jpeg',
+              'https://st2.depositphotos.com/4083751/6003/v/600/depositphotos_60038011-stock-video-film-negative-animation.jpg',
+
           movie: el,
         };
       });
@@ -59,7 +60,7 @@ const GridView = memo(props => {
               }}>
               <Text
                 style={{
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: 'bold',
                   color: colors.white,
                 }}>

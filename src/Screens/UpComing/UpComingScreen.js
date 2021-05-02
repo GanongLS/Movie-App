@@ -6,15 +6,15 @@ import GridView from '../TopRate/GridView';
 
 const UpComingScreen = memo(() => {
   const {
-    categories: {UpComing},
+    categories: {comingSoon},
   } = useMovieState();
-  console.log({UpComing});
+  console.log({comingSoon});
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Up Coming Movie</Text>
       </View>
-      <GridView list={UpComing} />
+      <GridView list={comingSoon} />
     </SafeAreaView>
   );
 });

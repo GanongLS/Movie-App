@@ -53,11 +53,12 @@ const MovieProvider = memo(props => {
   const reducer = (prevState, action) => {
     switch (action.type) {
       case 'nowShowing':
+        console.log({movies: action.movies});
         return {
           ...prevState,
           categories: {
             ...prevState.categories,
-            nowShowing: action.movies,
+            nowShowing: [...action.movies],
           },
         };
       case 'comingSoon':
@@ -120,14 +121,13 @@ const MovieProvider = memo(props => {
         try {
           const request = await Axios.get(baseUrl + uri);
           console.log({request});
-          onFetchCompleted(
-            category,
-            getUriPopulated(
-              request.data.results,
-              config,
-              'posterSizeForImageList',
-            ),
-          );
+          console.log(`category: ${category}`);
+          dispatch({type: category, movies: [...request.data.results]});
+          // onFetchCompleted(
+          //   category,
+          //   request.data.results,
+          // );
+          return true;
         } catch (err) {
           console.log(err);
           // const Err = fetchError(err, 'fetch');
