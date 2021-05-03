@@ -10,7 +10,7 @@ import MovieSearchBar from './MovieSearchBar';
 
 const HomeScreen = memo(() => {
   const {
-    categories: {nowShowing, comingSoon, popular},
+    categories: {nowShowing, comingSoon, popular, topRated},
   } = useMovieState();
   console.log({nowShowing});
   return (
@@ -38,29 +38,29 @@ const HomeScreen = memo(() => {
           placeholder="Type Here..."
           // value={search}
         />
-
-        <View style={styles.subtitle}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
-            Populer
-          </Text>
-        </View>
+        <SliderTitle title="Populer" />
         <HorizontalSlider list={popular} />
 
-        <View style={styles.subtitle}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
-            Akan Tayang
-          </Text>
-        </View>
+        <SliderTitle title="Akan Tayang" />
         <HorizontalSlider list={comingSoon} />
 
-        <View style={styles.subtitle}>
-          <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
-            Tayang Hari Ini
-          </Text>
-        </View>
+        <SliderTitle title="Tayang Hari Ini" />
         <HorizontalSlider list={nowShowing} />
+
+        <SliderTitle title="Top Rated" />
+        <HorizontalSlider list={topRated} />
       </ScrollView>
     </SafeAreaView>
+  );
+});
+
+const SliderTitle = memo(props => {
+  return (
+    <View style={styles.subtitle}>
+      <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
+        {props.title}
+      </Text>
+    </View>
   );
 });
 

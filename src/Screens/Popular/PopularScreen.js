@@ -1,21 +1,22 @@
 import React, {memo} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {useMovieState} from '../../Providers/MovieProvider';
-import GridView from './GridView';
+import GridView from '../TopRate/GridView';
+// import GridView from './GridView';
 
-const TopRateScreen = memo(() => {
+const PopularScreen = memo(() => {
   const {
-    categories: {topRated},
-    details,
+    categories: {popular},
   } = useMovieState();
-  // console.log({details});
+  console.log({popular});
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>Top Rated Movie</Text>
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+          Now Playing Movie
+        </Text>
       </View>
-
-      <GridView list={topRated} />
+      <GridView list={popular} />
     </SafeAreaView>
   );
 });
@@ -40,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {TopRateScreen};
+export {PopularScreen};

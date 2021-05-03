@@ -6,6 +6,7 @@ import colors from '../Constants/colors';
 import {height} from '../Constants/constants';
 import HomeScreen from '../Screens/Home/HomeScreens';
 import {NowPlayingScreen} from '../Screens/NowPlaying/NowPlayingScreen';
+import {PopularScreen} from '../Screens/Popular/PopularScreen';
 import {TopRateScreen} from '../Screens/TopRate/TopRateScreen';
 import {UpComingScreen} from '../Screens/UpComing/UpComingScreen';
 
@@ -22,15 +23,18 @@ const Dashboard = memo(() => {
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
             iconType = 'ionicon';
-          } else if (route.name === 'TopRate') {
-            iconName = focused ? 'star' : 'star-o';
-            iconType = 'font-awesome';
+          } else if (route.name === 'Popular') {
+            iconName = focused ? 'heart-circle' : 'heart-circle-outline';
+            iconType = 'ionicon';
           } else if (route.name === 'UpComing') {
             iconName = 'update';
             iconType = 'material';
           } else if (route.name === 'NowPlaying') {
             iconName = focused ? 'md-play-circle' : 'md-play-circle-outline';
             iconType = 'ionicon';
+          } else if (route.name === 'TopRated') {
+            iconName = focused ? 'star' : 'star-o';
+            iconType = 'font-awesome';
           }
 
           return (
@@ -69,9 +73,28 @@ const Dashboard = memo(() => {
         },
       }}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="TopRate" component={TopRateScreen} />
-      <Tab.Screen name="UpComing" component={UpComingScreen} />
-      <Tab.Screen name="NowPlaying" component={NowPlayingScreen} />
+      <Tab.Screen name="Popular" component={PopularScreen} />
+      <Tab.Screen
+        name="UpComing"
+        component={UpComingScreen}
+        options={{
+          tabBarLabel: 'Up Coming',
+        }}
+      />
+      <Tab.Screen
+        name="NowPlaying"
+        component={NowPlayingScreen}
+        options={{
+          tabBarLabel: 'Playing',
+        }}
+      />
+      <Tab.Screen
+        name="TopRated"
+        component={TopRateScreen}
+        options={{
+          tabBarLabel: 'Top Rated',
+        }}
+      />
     </Tab.Navigator>
   );
 });

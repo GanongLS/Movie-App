@@ -14,6 +14,7 @@ const Root = memo(() => {
     fetch('nowShowing', '/movie/now_playing');
     fetch('comingSoon', '/movie/upcoming');
     fetch('popular', '/movie/popular');
+    fetch('topRated', '/movie/top_rated');
     fetchConfig();
   }, []);
   return (

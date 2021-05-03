@@ -21,6 +21,7 @@ const MovieProvider = memo(props => {
       nowShowing: [],
       comingSoon: [],
       popular: [],
+      topRated: [],
     },
     details: {},
     cast: {
@@ -75,6 +76,14 @@ const MovieProvider = memo(props => {
           categories: {
             ...prevState.categories,
             popular: action.movies,
+          },
+        };
+      case 'topRated':
+        return {
+          ...prevState,
+          categories: {
+            ...prevState.categories,
+            topRated: action.movies,
           },
         };
       case 'saveDetails':
