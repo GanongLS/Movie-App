@@ -66,7 +66,7 @@ const MovieProvider = memo(props => {
           ...prevState,
           categories: {
             ...prevState.categories,
-            comingSoon: action.movies,
+            comingSoon: action.details,
           },
         };
       case 'popular':
@@ -76,6 +76,11 @@ const MovieProvider = memo(props => {
             ...prevState.categories,
             popular: action.movies,
           },
+        };
+      case 'saveDetails':
+        return {
+          ...prevState,
+          details: action.details,
         };
       case 'resetMovie':
         return {
@@ -120,19 +125,20 @@ const MovieProvider = memo(props => {
         const uri = `${route}?${apiKey}&language=${language}&region=${region}&page=1`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          console.log({request});
-          console.log(`category: ${category}`);
+          // console.log({request}); //* keep
+          // console.log(`category: ${category}`); //* keep
           dispatch({type: category, movies: [...request.data.results]});
-          // onFetchCompleted(
-          //   category,
-          //   request.data.results,
-          // );
           return true;
         } catch (err) {
           console.log(err);
-          // const Err = fetchError(err, 'fetch');
-          // console.log({Err});
+          // const Err = fetchError(err, 'fetch'); //* keep
+          // console.log({Err}); //* keep
         }
+      },
+
+      onSaveDetails: details => {
+        // console.log({'detail di method': details});
+        dispatch({type: 'saveDetails', details});
       },
 
       fetchMovies: async () => {

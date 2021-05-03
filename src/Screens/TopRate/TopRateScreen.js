@@ -6,8 +6,9 @@ import GridView from './GridView';
 const TopRateScreen = memo(() => {
   const {
     categories: {popular},
+    details,
   } = useMovieState();
-  // console.log({popular});
+  console.log({details});
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>

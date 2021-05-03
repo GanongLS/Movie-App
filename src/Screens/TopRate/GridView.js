@@ -1,13 +1,25 @@
 import {isEmpty} from 'lodash';
 import React, {memo, useEffect, useState} from 'react';
-import {FlatList, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+  Image,
+} from 'react-native';
 import colors from '../../Constants/colors';
 import {height, width} from '../../Constants/constants';
+import {useMovieMethod} from '../../Providers/MovieProvider';
 import BlackGradient from './Gradient';
 
 const GridView = memo(props => {
   const {list} = props;
   const [dataSource, setDataSource] = useState([]);
+  const {onSaveDetails} = useMovieMethod();
 
   useEffect(() => {
     let items;
@@ -50,24 +62,36 @@ const GridView = memo(props => {
             margin: 5,
             ...styles.imageThumbnail,
           }}>
-          <BlackGradient>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'flex-end',
-                paddingBottom: 5,
-                paddingLeft: 10,
-              }}>
-              <Text
+          <TouchableHighlight
+            onPress={() => {
+              onSaveDetails(item.movie);
+            }}
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              margin: 5,
+              ...styles.imageThumbnail,
+            }}
+          >
+            <BlackGradient>
+              <View
                 style={{
-                  fontSize: 18,
-                  fontWeight: 'bold',
-                  color: colors.white,
+                  flex: 1,
+                  justifyContent: 'flex-end',
+                  paddingBottom: 5,
+                  paddingLeft: 10,
                 }}>
-                {item.movie ? item.movie.title : ''}
-              </Text>
-            </View>
-          </BlackGradient>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 'bold',
+                    color: colors.white,
+                  }}>
+                  {item.movie ? item.movie.title : ''}
+                </Text>
+              </View>
+            </BlackGradient>
+          </TouchableHighlight>
         </ImageBackground>
       )}
       numColumns={2}
