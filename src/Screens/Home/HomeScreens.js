@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {SearchBar} from 'react-native-elements';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
@@ -23,8 +24,21 @@ const HomeScreen = memo(() => {
             The Movie DB
           </Text>
         </View>
+
         <HeroImage details={popular[0]} />
-        <MovieSearchBar />
+        <SearchBar
+          round
+          searchIcon={{size: 24}}
+          containerStyle={{
+            backgroundColor: 'white',
+            borderBottomColor: 'white',
+          }}
+          // onChangeText={text => searchFilterFunction(text)}
+          // onClear={text => searchFilterFunction('')}
+          placeholder="Type Here..."
+          // value={search}
+        />
+
         <View style={styles.subtitle}>
           <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
             Populer
