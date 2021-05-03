@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import {debounce} from 'lodash';
 import React, {
   createContext,
   memo,
@@ -6,8 +7,7 @@ import React, {
   useMemo,
   useReducer,
 } from 'react';
-import {baseUrl, apiKey, defaultTimeout} from '../Env/API';
-
+import {apiKey, baseUrl, defaultTimeout} from '../Env/API';
 import {fetchError} from './Helpers/fetchError';
 
 const movieStateContext = createContext({});
@@ -18,6 +18,13 @@ const MovieProvider = memo(props => {
 
   const initialState = {
     categories: {
+      nowShowing: [],
+      comingSoon: [],
+      popular: [],
+      topRated: [],
+    },
+    searched: {
+      text: '',
       nowShowing: [],
       comingSoon: [],
       popular: [],
@@ -53,39 +60,16 @@ const MovieProvider = memo(props => {
 
   const reducer = (prevState, action) => {
     switch (action.type) {
-      case 'nowShowing':
+      case 'fetchMovies':
         console.log({movies: action.movies});
         return {
           ...prevState,
           categories: {
             ...prevState.categories,
-            nowShowing: [...action.movies],
+            [action.category]: [...action.movies],
           },
         };
-      case 'comingSoon':
-        return {
-          ...prevState,
-          categories: {
-            ...prevState.categories,
-            comingSoon: action.movies,
-          },
-        };
-      case 'popular':
-        return {
-          ...prevState,
-          categories: {
-            ...prevState.categories,
-            popular: action.movies,
-          },
-        };
-      case 'topRated':
-        return {
-          ...prevState,
-          categories: {
-            ...prevState.categories,
-            topRated: action.movies,
-          },
-        };
+
       case 'saveDetails':
         return {
           ...prevState,
@@ -136,7 +120,11 @@ const MovieProvider = memo(props => {
           const request = await Axios.get(baseUrl + uri);
           // console.log({request}); //* keep
           // console.log(`category: ${category}`); //* keep
-          dispatch({type: category, movies: [...request.data.results]});
+          dispatch({
+            type: 'fetchMovies',
+            category,
+            movies: [...request.data.results],
+          });
           return true;
         } catch (err) {
           console.log(err);
@@ -146,26 +134,37 @@ const MovieProvider = memo(props => {
       },
 
       onSaveDetails: details => {
-        // console.log({'detail di method': details});
+        // console.log({'detail di method': details}); //* keep
         dispatch({type: 'saveDetails', details});
       },
 
       fetchConfig: async () => {
         // https://api.themoviedb.org/3/configuration?api_key=<<api_key>>
-
         const uri = `/configuration?${apiKey}`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          console.log({request}); //* keep
-          // console.log(`category: ${category}`); //* keep
-          // dispatch({type: category, movies: [...request.data.results]});
+          // console.log({request}); //* keep
           return true;
         } catch (err) {
           console.log(err);
-          // const Err = fetchError(err, 'fetch'); //* keep
-          // console.log({Err}); //* keep
         }
       },
+
+      onSearchCategory: debounce((category, text) => {
+        const {categories} = state;
+
+        const list = categories[category];
+        const searched = list.filter(el => {
+          return (
+            el.title.toLowerCase().indexOf(text.toLowerCase()) > -1 ||
+            el.release_date.indexOf(text) > -1
+          );
+        });
+        dispatch({type: 'setText', text});
+        hin_type == 'R'
+          ? dispatch({type: 'searchRiwayat', load})
+          : dispatch({type: 'searchMutasi', load});
+      }, 250),
 
       fetchMovies: async () => {
         try {
