@@ -46,7 +46,7 @@ const Dashboard = memo(() => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: colors.primary,
+        activeTintColor: colors.blue1,
         inactiveTintColor: colors.grayBD,
         keyboardHidesTabBar: true,
         style: {
@@ -64,7 +64,7 @@ const Dashboard = memo(() => {
           elevation: 10,
         },
         labelStyle: {
-          fontSize: normalize(10),
+          fontSize: normalize(12),
           paddingBottom: 8,
         },
       }}>

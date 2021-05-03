@@ -4,6 +4,7 @@ import React, {memo, useEffect, useState} from 'react';
 import {
   FlatList,
   ImageBackground,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -11,9 +12,9 @@ import {
 import colors from '../../Constants/colors';
 import {height, width} from '../../Constants/constants';
 import {useMovieMethod} from '../../Providers/MovieProvider';
-import BlackGradient from './Gradient';
+import BlackGradient from '../TopRate/Gradient';
 
-const GridView = memo(props => {
+const HorizontalSlider = memo(props => {
   const {navigate} = useNavigation();
   const {list} = props;
   const [dataSource, setDataSource] = useState([]);
@@ -47,9 +48,9 @@ const GridView = memo(props => {
 
   return (
     <FlatList
-      style={{height: height * 0.8}}
-      showsVerticalScrollIndicator={false}
-      horizontal={false}
+      style={{height: width * 0.42, marginVertical: 12}}
+      showsHorizontalScrollIndicator={false}
+      horizontal={true}
       data={dataSource}
       renderItem={({item}) => (
         <ImageBackground
@@ -84,12 +85,12 @@ const GridView = memo(props => {
           </BlackGradient>
         </ImageBackground>
       )}
-      numColumns={2}
+      // numColumns={2}
       keyExtractor={(item, index) => index}
     />
   );
 });
-export default GridView;
+export default HorizontalSlider;
 
 const styles = StyleSheet.create({
   container: {
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
+    width: width * 0.6,
     height: width * 0.4,
   },
 });
