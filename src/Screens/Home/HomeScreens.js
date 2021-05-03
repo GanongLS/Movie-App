@@ -5,6 +5,7 @@ import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import HeroImage from './HeroImage';
 import HorizontalSlider from './HorizontalSlider';
+import MovieSearchBar from './MovieSearchBar';
 
 const HomeScreen = memo(() => {
   const {
@@ -23,6 +24,7 @@ const HomeScreen = memo(() => {
           </Text>
         </View>
         <HeroImage details={popular[0]} />
+        <MovieSearchBar />
         <View style={styles.subtitle}>
           <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
             Populer

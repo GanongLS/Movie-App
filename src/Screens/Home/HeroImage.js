@@ -40,13 +40,13 @@ const HeroImage = memo(props => {
                 fontSize: 24,
                 fontWeight: 'bold',
                 color: colors.white,
-                marginBottom: 10,
+                marginBottom: 6,
               }}>
               Selamat Datang,
             </Text>
             <Text
               style={{
-                fontSize: 20,
+                fontSize: 18,
                 fontWeight: 'bold',
                 color: colors.white,
               }}>
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   screenContainer: {
+    flex: 1,
     backgroundColor: 'white',
   },
   container: {
@@ -80,6 +81,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
-    height: height * 0.4,
+    height: height * 0.35,
   },
 });
