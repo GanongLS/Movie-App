@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React, {memo, useEffect} from 'react';
 import {useMovieMethod} from '../Providers/MovieProvider';
-import MovieDetailsScreen from '../Screens/MovieDetailsScreen/MovieDetailsScreen';
+import MovieDetailsScreen from '../Screens/MovieDetails/MovieDetailsScreen';
 import {Dashboard} from './Dashboard';
 
 const Stack = createStackNavigator();

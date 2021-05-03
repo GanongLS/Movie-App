@@ -4,8 +4,8 @@ import {View} from 'react-native';
 import {Icon, normalize} from 'react-native-elements';
 import colors from '../Constants/colors';
 import {height} from '../Constants/constants';
+import HomeScreen from '../Screens/Home/HomeScreens';
 import {NowPlayingScreen} from '../Screens/NowPlaying/NowPlayingScreen';
-import {SearchScreen} from '../Screens/OtherScreens';
 import {TopRateScreen} from '../Screens/TopRate/TopRateScreen';
 import {UpComingScreen} from '../Screens/UpComing/UpComingScreen';
 
@@ -14,22 +14,22 @@ const Tab = createBottomTabNavigator();
 const Dashboard = memo(() => {
   return (
     <Tab.Navigator
-      initialRouteName="TopRate"
+      initialRouteName="Home"
       screenOptions={({route, navigation}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconType;
           let iconName;
-          if (route.name === 'TopRate') {
+          if (route.name === 'Home') {
+            iconName = focused ? 'home' : 'home-outline';
+            iconType = 'ionicon';
+          } else if (route.name === 'TopRate') {
             iconName = focused ? 'star' : 'star-o';
             iconType = 'font-awesome';
-          } else if (route.name === 'NowPlaying') {
-            iconName = focused ? 'md-play-circle' : 'md-play-circle-outline';
-            iconType = 'ionicon';
           } else if (route.name === 'UpComing') {
             iconName = 'update';
             iconType = 'material';
-          } else if (route.name === 'Search') {
-            iconName = focused ? 'search' : 'search';
+          } else if (route.name === 'NowPlaying') {
+            iconName = focused ? 'md-play-circle' : 'md-play-circle-outline';
             iconType = 'ionicon';
           }
 
@@ -68,10 +68,10 @@ const Dashboard = memo(() => {
           paddingBottom: 8,
         },
       }}>
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="TopRate" component={TopRateScreen} />
       <Tab.Screen name="UpComing" component={UpComingScreen} />
       <Tab.Screen name="NowPlaying" component={NowPlayingScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
     </Tab.Navigator>
   );
 });
