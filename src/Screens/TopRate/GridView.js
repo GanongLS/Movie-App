@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/core';
 import {isEmpty} from 'lodash';
 import React, {memo, useEffect, useState} from 'react';
 import {
@@ -17,6 +18,7 @@ import {useMovieMethod} from '../../Providers/MovieProvider';
 import BlackGradient from './Gradient';
 
 const GridView = memo(props => {
+  const {navigate} = useNavigation();
   const {list} = props;
   const [dataSource, setDataSource] = useState([]);
   const {onSaveDetails} = useMovieMethod();
@@ -29,7 +31,7 @@ const GridView = memo(props => {
         return {
           id,
           src: path
-            ? `https://image.tmdb.org/t/p/w500${path}`
+            ? `https://image.tmdb.org/t/p/w342${path}`
             : // : 'https://img.17qq.com/images/hsrshwuuwax.jpeg',
               'https://st2.depositphotos.com/4083751/6003/v/600/depositphotos_60038011-stock-video-film-negative-animation.jpg',
 
@@ -62,36 +64,28 @@ const GridView = memo(props => {
             margin: 5,
             ...styles.imageThumbnail,
           }}>
-          <TouchableHighlight
-            onPress={() => {
-              onSaveDetails(item.movie);
-            }}
-            style={{
-              flex: 1,
-              flexDirection: 'column',
-              margin: 5,
-              ...styles.imageThumbnail,
-            }}
-          >
-            <BlackGradient>
-              <View
+          <BlackGradient>
+            <TouchableOpacity
+              onPress={() => {
+                onSaveDetails(item.movie);
+                navigate('Movie Details');
+              }}
+              style={{
+                flex: 1,
+                justifyContent: 'flex-end',
+                paddingBottom: 5,
+                paddingLeft: 10,
+              }}>
+              <Text
                 style={{
-                  flex: 1,
-                  justifyContent: 'flex-end',
-                  paddingBottom: 5,
-                  paddingLeft: 10,
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  color: colors.white,
                 }}>
-                <Text
-                  style={{
-                    fontSize: 18,
-                    fontWeight: 'bold',
-                    color: colors.white,
-                  }}>
-                  {item.movie ? item.movie.title : ''}
-                </Text>
-              </View>
-            </BlackGradient>
-          </TouchableHighlight>
+                {item.movie ? item.movie.title : ''}
+              </Text>
+            </TouchableOpacity>
+          </BlackGradient>
         </ImageBackground>
       )}
       numColumns={2}

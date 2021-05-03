@@ -8,7 +8,7 @@ const TopRateScreen = memo(() => {
     categories: {popular},
     details,
   } = useMovieState();
-  console.log({details});
+  // console.log({details});
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>

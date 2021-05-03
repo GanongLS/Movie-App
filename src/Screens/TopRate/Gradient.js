@@ -9,11 +9,12 @@ const BlackGradient = memo(props => {
     <LinearGradient
       {...attr}
       colors={['transparent', '#000000']}
-      start={{x: 0.5, y: 0}}
-      end={{x: 0.5, y: 0.8}}
+      start={{x: 0.5, y: 0.7}}
+      end={{x: 0.5, y: 0.9}}
       style={{
         ...gradientStyle.container,
-        height: height ? height : screenHeight * 0.065,
+        // height: height ? height : screenHeight * 0.065,
+        height: height ? height : '100%',
         ...style,
       }}>
       {props.children}

@@ -19,8 +19,6 @@ const HomeScreen = memo(() => {
   );
 });
 
-
-
 const SearchScreen = memo(() => {
   return (
     <View style={styles.dummy}>
@@ -29,15 +27,7 @@ const SearchScreen = memo(() => {
   );
 });
 
-const MovieDetailScreen = memo(() => {
-  return (
-    <View style={styles.dummy}>
-      <Text>Movie Detail</Text>
-    </View>
-  );
-});
-
-export {HomeScreen,  SearchScreen, MovieDetailScreen};
+export {HomeScreen, SearchScreen};
 
 const styles = StyleSheet.create({
   dummy: {

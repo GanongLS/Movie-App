@@ -66,7 +66,7 @@ const MovieProvider = memo(props => {
           ...prevState,
           categories: {
             ...prevState.categories,
-            comingSoon: action.details,
+            comingSoon: action.movies,
           },
         };
       case 'popular':
@@ -139,6 +139,23 @@ const MovieProvider = memo(props => {
       onSaveDetails: details => {
         // console.log({'detail di method': details});
         dispatch({type: 'saveDetails', details});
+      },
+
+      fetchConfig: async () => {
+        // https://api.themoviedb.org/3/configuration?api_key=<<api_key>>
+
+        const uri = `/configuration?${apiKey}`;
+        try {
+          const request = await Axios.get(baseUrl + uri);
+          console.log({request}); //* keep
+          // console.log(`category: ${category}`); //* keep
+          // dispatch({type: category, movies: [...request.data.results]});
+          return true;
+        } catch (err) {
+          console.log(err);
+          // const Err = fetchError(err, 'fetch'); //* keep
+          // console.log({Err}); //* keep
+        }
       },
 
       fetchMovies: async () => {
