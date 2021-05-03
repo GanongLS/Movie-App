@@ -1,12 +1,19 @@
+import {useNavigation} from '@react-navigation/core';
 import React, {memo} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import HeroImage from './HeroImage';
 import HorizontalSlider from './HorizontalSlider';
-import MovieSearchBar from './MovieSearchBar';
 
 const HomeScreen = memo(() => {
   const {
@@ -25,7 +32,7 @@ const HomeScreen = memo(() => {
           </Text>
         </View>
 
-        <HeroImage details={popular[0]} />
+        <HeroImage details={popular[popular.length - 1]} />
         <SearchBar
           round
           searchIcon={{size: 24}}
@@ -35,19 +42,19 @@ const HomeScreen = memo(() => {
           }}
           // onChangeText={text => searchFilterFunction(text)}
           // onClear={text => searchFilterFunction('')}
-          placeholder="Type Here..."
+          placeholder="Cari Movie..."
           // value={search}
         />
-        <SliderTitle title="Populer" />
+        <SliderTitle title="Populer" route={'Popular'} />
         <HorizontalSlider list={popular} />
 
-        <SliderTitle title="Akan Tayang" />
+        <SliderTitle title="Akan Tayang" route={'Up Coming'} />
         <HorizontalSlider list={comingSoon} />
 
-        <SliderTitle title="Tayang Hari Ini" />
+        <SliderTitle title="Tayang Hari Ini" route="NowPlaying" />
         <HorizontalSlider list={nowShowing} />
 
-        <SliderTitle title="Top Rated" />
+        <SliderTitle title="Top Rated" route="TopRated" />
         <HorizontalSlider list={topRated} />
       </ScrollView>
     </SafeAreaView>
@@ -55,11 +62,18 @@ const HomeScreen = memo(() => {
 });
 
 const SliderTitle = memo(props => {
+  const {navigate} = useNavigation();
+  const {title, route} = props;
   return (
     <View style={styles.subtitle}>
-      <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
-        {props.title}
-      </Text>
+      <TouchableOpacity
+        onPress={() => {
+          route ? navigate(route) : null;
+        }}>
+        <Text style={{fontSize: 20, fontWeight: '700', color: colors.dark}}>
+          {title}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 });
