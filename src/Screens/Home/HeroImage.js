@@ -32,7 +32,7 @@ const HeroImage = memo(props => {
             style={{
               flex: 1,
               justifyContent: 'flex-end',
-              paddingBottom: 25,
+              paddingBottom: 15,
               paddingLeft: 10,
             }}>
             <Text
@@ -50,7 +50,7 @@ const HeroImage = memo(props => {
                 fontWeight: 'bold',
                 color: colors.white,
               }}>
-              Nikmati ribuan movie hanya dengan smartphone.
+              Nikmati ribuan movie cukup dengan smartphone.
             </Text>
           </View>
         </BlackGradient>

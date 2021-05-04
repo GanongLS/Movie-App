@@ -30,6 +30,10 @@ const MovieProvider = memo(props => {
       popular: [],
       topRated: [],
     },
+    queried: {
+      text: '',
+      movies: [],
+    },
     details: {},
     cast: {
       details: {},
@@ -61,12 +65,34 @@ const MovieProvider = memo(props => {
   const reducer = (prevState, action) => {
     switch (action.type) {
       case 'fetchMovies':
-        console.log({movies: action.movies});
+        // console.log({movies: action.movies});
         return {
           ...prevState,
           categories: {
             ...prevState.categories,
             [action.category]: [...action.movies],
+          },
+        };
+
+      case 'searchCategory':
+        console.log({'searched category': action.category});
+        return {
+          ...prevState,
+          searched: {
+            ...prevState.searched,
+            text: action.text, //* mungkin perlu du action berbeda untuk ext ini, yang hanya text dan yang ada effectnya, mungkin debouncenya dikeluarkan dari method.
+            [action.category]: [...action.searched],
+          },
+        };
+
+      case 'searchQueries':
+        // console.log({'searched category': action.category});
+        return {
+          ...prevState,
+          queried: {
+            // ...prevState.queried,
+            text: action.text, //* ini juga mungkin textnya dibedakan. atau textfield menggunakan useState, action menggunakan provider. 
+            movies: [...action.searched],
           },
         };
 
@@ -160,24 +186,29 @@ const MovieProvider = memo(props => {
             el.release_date.indexOf(text) > -1
           );
         });
-        dispatch({type: 'setText', text});
-        hin_type == 'R'
-          ? dispatch({type: 'searchRiwayat', load})
-          : dispatch({type: 'searchMutasi', load});
-      }, 250),
+        dispatch({type: 'searchCategory', category, text, searched});
+      }, 500),
 
-      fetchMovies: async () => {
+      onSearchMovies: debounce(async text => {
+        const uri = `/search/movie?api_key=${apiKey}&query=${text}`;
         try {
-          const request = await Axios.post(`${baseUrl}/auth/device`, encrypt, {
-            timeout: defaultTimeout,
+          const request = await Axios.get(baseUrl + uri);
+          // console.log({request}); //* keep
+          // console.log(`category: ${category}`); //* keep
+          dispatch({
+            type: 'searchMovies',
+            text,
+            movies: [...request.data.results],
           });
-          console.log({request});
-          return request.data;
+          return true;
         } catch (err) {
-          const Err = fetchError(err, 'authDevice');
-          console.log({Err});
+          console.log(err);
+          // const Err = fetchError(err, 'fetch'); //* keep
+          // console.log({Err}); //* keep
         }
-      },
+
+        dispatch({type: 'searchCategory', text, searched});
+      }, 500),
     }),
     [dispatch, state],
   );

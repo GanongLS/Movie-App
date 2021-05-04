@@ -1,14 +1,15 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SearchBar} from 'react-native-elements';
 import {useMovieState} from '../../Providers/MovieProvider';
 import GridView from '../TopRate/GridView';
-// import GridView from './GridView';
 
 const PopularScreen = memo(() => {
   const {
     categories: {popular},
   } = useMovieState();
   console.log({popular});
+  const [text, setText] = useState('');
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>
@@ -16,6 +17,18 @@ const PopularScreen = memo(() => {
           Now Playing Movie
         </Text>
       </View>
+      <SearchBar
+        round
+        searchIcon={{size: 24}}
+        containerStyle={{
+          backgroundColor: 'white',
+          borderBottomColor: 'white',
+        }}
+        onChangeText={text => setText(text)}
+        onClear={text => setText('')}
+        placeholder="Cari Movie..."
+        value={text}
+      />
       <GridView list={popular} />
     </SafeAreaView>
   );

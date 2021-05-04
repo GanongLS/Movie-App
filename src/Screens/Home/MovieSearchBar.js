@@ -14,12 +14,7 @@ const MovieSearchBar = memo(props => {
         color={colors.grayBD}
         onPress={iconPress}
       />
-      <TextInput
-        placeholder="cari movie"
-        value={value}
-        style={{flex: 1}}
-        {...props}
-      />
+      <TextInput placeholder="cari movie" value={value} style={{flex: 1}} />
     </View>
   );
 });

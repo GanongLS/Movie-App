@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {SearchBar} from 'react-native-elements';
+import {Icon, normalize, SearchBar} from 'react-native-elements';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
@@ -19,7 +19,9 @@ const HomeScreen = memo(() => {
   const {
     categories: {nowShowing, comingSoon, popular, topRated},
   } = useMovieState();
-  console.log({nowShowing});
+  // console.log({ nowShowing });
+  const [text, setText] = useState('');
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -40,15 +42,22 @@ const HomeScreen = memo(() => {
             backgroundColor: 'white',
             borderBottomColor: 'white',
           }}
-          // onChangeText={text => searchFilterFunction(text)}
-          // onClear={text => searchFilterFunction('')}
+          inputContainerStyle={{
+            backgroundColor: 'black',
+          }}
+          inputStyle={{
+            color: 'white',
+          }}
+          onChangeText={text => setText(text)}
+          onClear={text => setText('')}
           placeholder="Cari Movie..."
-          // value={search}
+          value={text}
         />
+        
         <SliderTitle title="Populer" route={'Popular'} />
         <HorizontalSlider list={popular} />
 
-        <SliderTitle title="Akan Tayang" route={'Up Coming'} />
+        <SliderTitle title="Akan Tayang" route={'UpComing'} />
         <HorizontalSlider list={comingSoon} />
 
         <SliderTitle title="Tayang Hari Ini" route="NowPlaying" />
