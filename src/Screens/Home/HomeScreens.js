@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {memo, useState} from 'react';
+import React, {memo} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,23 +8,23 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Icon, normalize, SearchBar} from 'react-native-elements';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import HeroImage from './HeroImage';
 import HorizontalSlider from './HorizontalSlider';
+import MovieSearchBar from './MovieSearchBar';
 
 const HomeScreen = memo(() => {
   const {
     categories: {nowShowing, comingSoon, popular, topRated},
   } = useMovieState();
   // console.log({ nowShowing });
-  const [text, setText] = useState('');
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: height * 0.1,
         }}>
@@ -35,25 +35,8 @@ const HomeScreen = memo(() => {
         </View>
 
         <HeroImage details={popular[popular.length - 1]} />
-        <SearchBar
-          round
-          searchIcon={{size: 24}}
-          containerStyle={{
-            backgroundColor: 'white',
-            borderBottomColor: 'white',
-          }}
-          inputContainerStyle={{
-            backgroundColor: 'black',
-          }}
-          inputStyle={{
-            color: 'white',
-          }}
-          onChangeText={text => setText(text)}
-          onClear={text => setText('')}
-          placeholder="Cari Movie..."
-          value={text}
-        />
-        
+
+        <MovieSearchBar />
         <SliderTitle title="Populer" route={'Popular'} />
         <HorizontalSlider list={popular} />
 
