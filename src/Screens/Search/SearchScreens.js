@@ -1,10 +1,12 @@
+import {isEmpty} from 'lodash';
 import React, {memo} from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View, TextInput} from 'react-native';
+import {normalize, Icon} from 'react-native-elements';
+import colors from '../../Constants/colors';
+import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import MovieSearchBar from '../Home/MovieSearchBar';
 import GridView from '../TopRate/GridView';
-import {isEmpty} from 'lodash';
-import {height} from '../../Constants/constants';
 
 const SearchScreen = memo(() => {
   const {
@@ -18,7 +20,31 @@ const SearchScreen = memo(() => {
           Hasil Pencarian "{`${searchText}`}".
         </Text>
       </View>
-      <MovieSearchBar />
+      <View style={styles.rowSBContainer}>
+        <View style={{flex: 2}}>
+          <MovieSearchBar />
+        </View>
+        <View style={{padding: 8, flex: 0.7}}>
+          <View style={{...styles.rowSBContainer, ...styles.rounded}}>
+            <TextInput
+              placeholder="Cari movie..."
+              placeholderTextColor="white"
+              style={{fontSize: normalize(18), color: 'white', flex: 1}}
+              value={'Tahun'}
+              editable={false}
+            />
+            <Icon
+              type="ionicon"
+              name="chevron-down-sharp"
+              size={normalize(20)}
+              color={colors.white}
+              // onPress={iconPress}
+              style={{padding: 8}}
+            />
+          </View>
+        </View>
+      </View>
+
       <View style={{marginBottom: 30}}>
         {isEmpty(movies) ? (
           <View style={{flexGrow: 1}}>
@@ -46,5 +72,14 @@ const styles = StyleSheet.create({
   title: {
     paddingVertical: 10,
     paddingHorizontal: 20,
+  },
+  rowSBContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  rounded: {
+    backgroundColor: colors.gray66,
+    borderRadius: 12,
   },
 });

@@ -80,18 +80,17 @@ const MovieProvider = memo(props => {
           ...prevState,
           searched: {
             ...prevState.searched,
-            text: action.text, //* mungkin perlu du action berbeda untuk ext ini, yang hanya text dan yang ada effectnya, mungkin debouncenya dikeluarkan dari method.
+            text: action.text,
             [action.category]: [...action.searched],
           },
         };
 
       case 'searchMovies':
-        // console.log({'searched category': action.category});
         return {
           ...prevState,
           queried: {
-            // ...prevState.queried,
-            text: action.text, //* ini juga mungkin textnya dibedakan. atau textfield menggunakan useState, action menggunakan provider.
+            ...prevState.queried,
+            text: action.text,
             movies: [...action.movies],
           },
         };
