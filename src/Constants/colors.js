@@ -25,6 +25,7 @@ const colors = {
   grayBD: '#bdbdbd',
   gray9E: '#9e9e9e',
   gray82: '#828282',
+  gray66: '#666666',
   grayUnderline: '#e4e4e4',
   orange3: '#ff6d1f',
   bluish: '#F5F4F9',

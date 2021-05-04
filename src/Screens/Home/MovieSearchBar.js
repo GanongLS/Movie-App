@@ -15,7 +15,7 @@ const MovieSearchBar = memo(props => {
     console.log('Searching');
     const search = await onSearchMovies(text);
     console.log({search});
-    search ? navigate('Search') : null;
+    search ? (navigate('Search'), setText('')) : null;
   }, 500);
   return (
     <View style={{...styles.rowSBContainer}}>
@@ -54,7 +54,7 @@ const MovieSearchBar = memo(props => {
         <View
           style={{
             borderRadius: 100,
-            backgroundColor: colors.gray82,
+            backgroundColor: colors.gray66,
             marginRight: 8,
             padding: 8,
           }}>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   rounded: {
-    backgroundColor: colors.gray82,
+    backgroundColor: colors.gray66,
     borderRadius: 12,
   },
 });

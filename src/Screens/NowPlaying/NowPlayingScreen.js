@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import GridView from '../TopRate/GridView';
 // import GridView from './GridView';
@@ -16,7 +17,7 @@ const NowPlayingScreen = memo(() => {
           Now Playing Movie
         </Text>
       </View>
-      <GridView list={nowShowing} />
+      <GridView list={nowShowing} height={height * 0.755} />
     </SafeAreaView>
   );
 });

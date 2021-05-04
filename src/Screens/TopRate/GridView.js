@@ -9,13 +9,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import colors from '../../Constants/colors';
-import {height, width} from '../../Constants/constants';
+import {height as screenHeight, width} from '../../Constants/constants';
 import {useMovieMethod} from '../../Providers/MovieProvider';
 import BlackGradient from './Gradient';
 
 const GridView = memo(props => {
   const {navigate} = useNavigation();
-  const {list} = props;
+  const {list, height} = props;
   const [dataSource, setDataSource] = useState([]);
   const {onSaveDetails} = useMovieMethod();
 
@@ -47,7 +47,7 @@ const GridView = memo(props => {
 
   return (
     <FlatList
-      style={{height: height * 0.8}}
+      style={{height: height ? height : screenHeight * 0.8}}
       showsVerticalScrollIndicator={false}
       horizontal={false}
       data={dataSource}

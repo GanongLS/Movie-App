@@ -1,5 +1,6 @@
 import React, {memo} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import GridView from './GridView';
 
@@ -15,7 +16,7 @@ const TopRateScreen = memo(() => {
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Top Rated Movie</Text>
       </View>
 
-      <GridView list={topRated} />
+      <GridView list={topRated} height={height * 0.755} />
     </SafeAreaView>
   );
 });

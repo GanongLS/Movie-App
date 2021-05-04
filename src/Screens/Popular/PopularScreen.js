@@ -1,6 +1,7 @@
 import React, {memo, useState} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {SearchBar} from 'react-native-elements';
+import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import GridView from '../TopRate/GridView';
 
@@ -29,7 +30,7 @@ const PopularScreen = memo(() => {
         placeholder="Cari Movie..."
         value={text}
       />
-      <GridView list={popular} />
+      <GridView list={popular} height={height * 0.755} />
     </SafeAreaView>
   );
 });

@@ -1,8 +1,8 @@
 import React, {memo} from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import GridView from '../TopRate/GridView';
-// import GridView from './GridView';
 
 const UpComingScreen = memo(() => {
   const {
@@ -14,7 +14,7 @@ const UpComingScreen = memo(() => {
       <View style={styles.title}>
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Up Coming Movie</Text>
       </View>
-      <GridView list={comingSoon} />
+      <GridView list={comingSoon} height={height * 0.755} />
     </SafeAreaView>
   );
 });
