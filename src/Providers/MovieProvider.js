@@ -85,14 +85,14 @@ const MovieProvider = memo(props => {
           },
         };
 
-      case 'searchQueries':
+      case 'searchMovies':
         // console.log({'searched category': action.category});
         return {
           ...prevState,
           queried: {
             // ...prevState.queried,
-            text: action.text, //* ini juga mungkin textnya dibedakan. atau textfield menggunakan useState, action menggunakan provider. 
-            movies: [...action.searched],
+            text: action.text, //* ini juga mungkin textnya dibedakan. atau textfield menggunakan useState, action menggunakan provider.
+            movies: [...action.movies],
           },
         };
 
@@ -144,7 +144,7 @@ const MovieProvider = memo(props => {
         const uri = `${route}?${apiKey}&language=${language}&region=${region}&page=1`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          // console.log({request}); //* keep
+          console.log({request}); //* keep
           // console.log(`category: ${category}`); //* keep
           dispatch({
             type: 'fetchMovies',
@@ -189,26 +189,24 @@ const MovieProvider = memo(props => {
         dispatch({type: 'searchCategory', category, text, searched});
       }, 500),
 
-      onSearchMovies: debounce(async text => {
-        const uri = `/search/movie?api_key=${apiKey}&query=${text}`;
+      onSearchMovies: async text => {
+        const uri = `/search/movie?${apiKey}&query=${text}`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          // console.log({request}); //* keep
+          console.log({request}); //* keep
           // console.log(`category: ${category}`); //* keep
           dispatch({
             type: 'searchMovies',
             text,
             movies: [...request.data.results],
           });
-          return true;
+          return request.data;
         } catch (err) {
           console.log(err);
           // const Err = fetchError(err, 'fetch'); //* keep
           // console.log({Err}); //* keep
         }
-
-        dispatch({type: 'searchCategory', text, searched});
-      }, 500),
+      },
     }),
     [dispatch, state],
   );
