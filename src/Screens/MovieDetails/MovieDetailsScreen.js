@@ -1,3 +1,4 @@
+import {isEmpty} from 'lodash';
 import React, {memo, useEffect} from 'react';
 import {
   ImageBackground,
@@ -63,6 +64,24 @@ const MovieDetailsScreen = memo(() => {
           </View>
         </BlackGradient>
       </ImageBackground>
+      <View style={{height: height * 0.33, backgroundColor: colors.black}}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-start',
+            paddingBottom: 25,
+            paddingLeft: 10,
+          }}>
+          <Text style={{color: colors.white, fontSize: 18}}>
+            Sinopsis:
+            {details
+              ? !isEmpty(details.overview)
+                ? ` ${details.overview}`
+                : 'Tidak ada sinopsis untuk movie ini'
+              : 'Tidak ada sinopsis untuk movie ini'}
+          </Text>
+        </View>
+      </View>
     </SafeAreaView>
   );
 });
@@ -88,6 +107,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    height: height * 0.6,
   },
 });
