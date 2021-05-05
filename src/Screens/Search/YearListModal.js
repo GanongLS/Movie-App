@@ -25,7 +25,7 @@ const YearListModal = memo(props => {
   const list = [null, ...yearList];
 
   const renderItem = ({item}) => {
-    console.log({item});
+    // console.log({item});
     return (
       <FLItem
         name={item == null ? 'tanpa tahun' : item.toString()}

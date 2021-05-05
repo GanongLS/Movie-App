@@ -1,28 +1,38 @@
 import {debounce} from 'lodash';
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 import {Icon, normalize} from 'react-native-elements';
 import colors from '../../Constants/colors';
-import {useMovieMethod} from '../../Providers/MovieProvider';
+import {useMovieMethod, useMovieState} from '../../Providers/MovieProvider';
 import YearListModal from './YearListModal';
 
 const SearchSearchBar = memo(props => {
-  const {iconPress} = props;
-
+  const {
+    queried: {text: searchtext},
+  } = useMovieState();
+  useEffect(() => {
+    setText(searchtext);
+  }, []);
   //* the search bar
   const {onFilterSearch} = useMovieMethod();
+
   const [text, setText] = useState('');
-  const onSearch = debounce(async () => {
-    console.log('Searching');
-    const search = await onFilterSearch(text, year);
-    console.log({search});
+  const onSearch = debounce(async (t, y) => {
+    if (t.length > 0) {
+      console.log('Searching');
+      const search = await onFilterSearch(t, y);
+      console.log({search});
+    }
   }, 500);
 
   //*the year list
 
   const [listVisible, setListVisible] = useState(false);
   const [year, setYear] = useState(null);
-  const onChangeYear = y => setYear(y);
+  const onChangeYear = y => {
+    setYear(y);
+    onSearch(text, y);
+  };
 
   const onHideList = () => setListVisible(false);
 
@@ -56,58 +66,41 @@ const SearchSearchBar = memo(props => {
           </TouchableOpacity>
         </View>
         <View style={{flex: 2}}>
-          <View style={{...styles.rowSBContainer}}>
-            <View style={{padding: 8, flex: 1}}>
-              <View style={{...styles.rowSBContainer, ...styles.rounded}}>
-                <Icon
-                  type="ionicon"
-                  name="search"
-                  size={normalize(20)}
-                  color={colors.white}
-                  onPress={iconPress}
-                  style={{padding: 8}}
-                />
-                <TextInput
-                  placeholder="Cari movie..."
-                  placeholderTextColor="white"
-                  style={{fontSize: normalize(18), color: 'white', flex: 1}}
-                  onChangeText={t => setText(t)}
-                  value={text}
-                  onSubmitEditing={onSearch}
-                />
-                {text ? (
-                  <View style={{flex: 0.15}}>
-                    <Icon
-                      type="ionicon"
-                      name="close-circle"
-                      size={normalize(22)}
-                      color={colors.white}
-                      onPress={() => setText('')}
-                    />
-                  </View>
-                ) : null}
-              </View>
-            </View>
-            {text.length > 3 ? (
-              <View
-                style={{
-                  borderRadius: 100,
-                  backgroundColor: colors.gray66,
-                  marginRight: 8,
-                  padding: 8,
-                }}>
-                <View style={{padding: 4}}>
+          <View style={{padding: 8}}>
+            <View
+              style={{
+                ...styles.rowSpace,
+                ...styles.rounded,
+                paddingHorizontal: 8,
+              }}>
+              <Icon
+                type="ionicon"
+                name="search"
+                size={normalize(20)}
+                color={colors.white}
+                onPress={() => onSearch(text, year)}
+                style={{margin: 8, flex: 0.2}}
+              />
+              <TextInput
+                placeholder="Cari movie..."
+                placeholderTextColor="white"
+                style={{fontSize: normalize(18), color: 'white', flex: 1}}
+                onChangeText={t => setText(t)}
+                value={text}
+                onSubmitEditing={() => onSearch(text, year)}
+              />
+              {text ? (
+                <View style={{flex: 0.15}}>
                   <Icon
                     type="ionicon"
-                    name="send"
-                    size={normalize(20)}
+                    name="close-circle"
+                    size={normalize(22)}
                     color={colors.white}
-                    onPress={onSearch}
-                    // style={{padding: 8}}
+                    onPress={() => setText('')}
                   />
                 </View>
-              </View>
-            ) : null}
+              ) : null}
+            </View>
           </View>
         </View>
       </View>

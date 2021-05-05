@@ -1,25 +1,15 @@
 import {isEmpty} from 'lodash';
-import React, {memo, useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {normalize, Icon} from 'react-native-elements';
+import React, {memo} from 'react';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
-import MovieSearchBar from '../Home/MovieSearchBar';
 import GridView from '../TopRate/GridView';
 import SearchSearchBar from './SearchSearchBar';
-import YearListModal from './YearListModal';
 
 const SearchScreen = memo(() => {
   const {
-    queried: {text: searchText, movies},
+    queried: {text: searchText, year, movies},
   } = useMovieState();
   console.log({movies});
 
@@ -36,7 +26,8 @@ const SearchScreen = memo(() => {
           <View style={{flexGrow: 1}}>
             <View style={styles.title}>
               <Text style={{fontSize: 20, fontWeight: 'bold'}}>
-                Tidak ada hasil pencarian "{`${searchText}`}".
+                Tidak ada hasil pencarian "{`${searchText}`}"
+                {year ? ` dan tahun: ${year.toString()}` : null}.
               </Text>
             </View>
           </View>

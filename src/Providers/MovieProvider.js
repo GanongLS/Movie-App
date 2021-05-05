@@ -32,6 +32,7 @@ const MovieProvider = memo(props => {
     },
     queried: {
       text: '',
+      year: null,
       movies: [],
     },
     details: {},
@@ -91,6 +92,7 @@ const MovieProvider = memo(props => {
           queried: {
             ...prevState.queried,
             text: action.text,
+            year: action.year,
             movies: [...action.movies],
           },
         };
@@ -214,6 +216,7 @@ const MovieProvider = memo(props => {
           dispatch({
             type: 'searchMovies',
             text,
+            year,
             movies: [...request.data.results],
           });
           return true;
