@@ -15,6 +15,38 @@ How to run the App:
 
 In the Linux based OS you may find npm not running as expected you may need `npx react-native start` then `npx react-native run-android`.
 
+## Cara membuat Debug APK
+
+copas command berikut di terminal pada folder utama
+
+`npx react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res`
+
+atau 
+
+`npx react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/build/intermediates/assets/debug/index.android.bundle --assets-dest ./android/app/build/intermediates/res/merged/debug`
+
+pada kasus OS linux perlu ada penambahan yarn/npx di depan command, pada OS lain mungkin tidak diperlukan.
+
+jika ada kendala karena error Enoent coba buat foldernya dengan
+`mkdir android/app/src/main/assets`
+
+setelah selesai
+#Buka file android
+`cd android`
+
+jika gagal build karena Execution failed for task ':app:mergeDexDebug' atau semacamnya coba
+baca:
+https://rnfirebase.io/enabling-multidex
+
+#Create debug build:
+`./gradlew assembleDebug`
+
+#Create release build:
+`./gradlew assembleRelease`
+
+apk debug ada pada
+`cd app/build/outputs/apk/debug`
+
 If you find some error feel free to open issues.
 
 Happy Hacking.
