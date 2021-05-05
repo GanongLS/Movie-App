@@ -1,18 +1,28 @@
 import {isEmpty} from 'lodash';
-import React, {memo} from 'react';
-import {SafeAreaView, StyleSheet, Text, View, TextInput} from 'react-native';
+import React, {memo, useState} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {normalize, Icon} from 'react-native-elements';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
 import MovieSearchBar from '../Home/MovieSearchBar';
 import GridView from '../TopRate/GridView';
+import SearchSearchBar from './SearchSearchBar';
+import YearListModal from './YearListModal';
 
 const SearchScreen = memo(() => {
   const {
     queried: {text: searchText, movies},
   } = useMovieState();
   console.log({movies});
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.title}>
@@ -20,31 +30,7 @@ const SearchScreen = memo(() => {
           Hasil Pencarian "{`${searchText}`}".
         </Text>
       </View>
-      <View style={styles.rowSBContainer}>
-        <View style={{flex: 2}}>
-          <MovieSearchBar />
-        </View>
-        <View style={{padding: 8, flex: 0.7}}>
-          <View style={{...styles.rowSBContainer, ...styles.rounded}}>
-            <TextInput
-              placeholder="Cari movie..."
-              placeholderTextColor="white"
-              style={{fontSize: normalize(18), color: 'white', flex: 1}}
-              value={'Tahun'}
-              editable={false}
-            />
-            <Icon
-              type="ionicon"
-              name="chevron-down-sharp"
-              size={normalize(20)}
-              color={colors.white}
-              // onPress={iconPress}
-              style={{padding: 8}}
-            />
-          </View>
-        </View>
-      </View>
-
+      <SearchSearchBar />
       <View style={{marginBottom: 30}}>
         {isEmpty(movies) ? (
           <View style={{flexGrow: 1}}>
@@ -73,9 +59,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
-  rowSBContainer: {
+  rowSpace: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   rounded: {

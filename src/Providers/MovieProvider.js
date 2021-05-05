@@ -206,6 +206,23 @@ const MovieProvider = memo(props => {
           // console.log({Err}); //* keep
         }
       },
+      onFilterSearch: async (text, year) => {
+        const uri = `/search/movie?${apiKey}&query=${text}&year=${year}`;
+        try {
+          const request = await Axios.get(baseUrl + uri);
+          console.log({request}); //* keep
+          dispatch({
+            type: 'searchMovies',
+            text,
+            movies: [...request.data.results],
+          });
+          return true;
+        } catch (err) {
+          console.log(err);
+          // const Err = fetchError(err, 'fetch'); //* keep
+          // console.log({Err}); //* keep
+        }
+      },
     }),
     [dispatch, state],
   );
