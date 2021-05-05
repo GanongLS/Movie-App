@@ -28,7 +28,7 @@ const YearListModal = memo(props => {
     // console.log({item});
     return (
       <FLItem
-        name={item == null ? 'tanpa tahun' : item.toString()}
+        name={item == null ? 'Tanpa tahun' : item.toString()}
         onPress={() => {
           onSubmit(item);
           onHide();
