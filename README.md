@@ -21,7 +21,7 @@ Happy Hacking.
 
 -@ganLS-
 
-=================================================
+---
 
 ## Cara membuat Debug APK
 
@@ -55,7 +55,7 @@ https://rnfirebase.io/enabling-multidex
 apk debug ada pada
 `cd app/build/outputs/apk/debug`
 
---------------------------------------------
+---
 
 Repositori ini dibuat untuk memenuhi test assesment untuk masuk ke dalam team front end developer PT ALAMI Sharia.
 
