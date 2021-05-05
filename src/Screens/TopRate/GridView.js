@@ -65,7 +65,7 @@ const GridView = memo(props => {
               onPress={() => {
                 onSaveDetails(item.movie);
                 navigate('Movie Details');
-                getDetails(item.id);
+                getDetails(item.movie.id);
               }}
               style={{
                 flex: 1,

@@ -146,7 +146,7 @@ const MovieProvider = memo(props => {
         const uri = `${route}?${apiKey}&language=${language}&region=${region}&page=1`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          console.log({request}); //* keep
+          // console.log({request}); //* keep
           // console.log(`category: ${category}`); //* keep
           dispatch({
             type: 'fetchMovies',
@@ -160,19 +160,15 @@ const MovieProvider = memo(props => {
           // console.log({Err}); //* keep
         }
       },
-      getDetails: async (id) => {
+      getDetails: async id => {
+        console.log({'movie get details, id:': id});
         // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
-       
-        const uri = `movie/${id}?${apiKey}`;
+
+        const uri = `/movie/${id}?${apiKey}`;
         try {
           const request = await Axios.get(baseUrl + uri);
           console.log({request}); //* keep
-          // console.log(`category: ${category}`); //* keep
-          // dispatch({
-          //   type: 'fetchMovies',
-          //   category,
-          //   movies: [...request.data.results],
-          // });
+          dispatch({type: 'saveDetails', details: request.data});
           return true;
         } catch (err) {
           console.log(err);

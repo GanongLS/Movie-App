@@ -99,12 +99,12 @@ export default MovieDetailsScreen;
 const styles = StyleSheet.create({
   dummy: {
     backgroundColor: colors.white,
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   screenContainer: {
     backgroundColor: 'black',
+    flex: 1,
   },
   container: {
     flex: 1,
@@ -115,6 +115,6 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
     alignItems: 'center',
-    height: height * 0.6,
+    height: height * 0.5,
   },
 });

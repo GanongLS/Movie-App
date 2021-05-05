@@ -4,13 +4,12 @@ import React, {memo, useEffect, useState} from 'react';
 import {
   FlatList,
   ImageBackground,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
 } from 'react-native';
 import colors from '../../Constants/colors';
-import {height, width} from '../../Constants/constants';
+import {width} from '../../Constants/constants';
 import {useMovieMethod} from '../../Providers/MovieProvider';
 import BlackGradient from '../TopRate/Gradient';
 
@@ -18,7 +17,7 @@ const HorizontalSlider = memo(props => {
   const {navigate} = useNavigation();
   const {list} = props;
   const [dataSource, setDataSource] = useState([]);
-  const {onSaveDetails} = useMovieMethod();
+  const {onSaveDetails, getDetails} = useMovieMethod();
 
   useEffect(() => {
     let items;
@@ -66,6 +65,7 @@ const HorizontalSlider = memo(props => {
               onPress={() => {
                 onSaveDetails(item.movie);
                 navigate('Movie Details');
+                getDetails(item.movie.id);
               }}
               style={{
                 flex: 1,
