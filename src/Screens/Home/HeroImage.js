@@ -1,20 +1,19 @@
-import React, {memo, useEffect} from 'react';
+import React, {memo} from 'react';
 import {
   ImageBackground,
+  SafeAreaView,
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
 } from 'react-native';
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
-import {useMovieState} from '../../Providers/MovieProvider';
 import BlackGradient from '../TopRate/Gradient';
 
 const HeroImage = memo(props => {
   const {details} = props;
 
-  console.log({details});
+  // console.log({details});
 
   return (
     <SafeAreaView style={styles.screenContainer}>

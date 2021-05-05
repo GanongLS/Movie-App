@@ -7,8 +7,19 @@ import {useMovieMethod, useMovieState} from '../../Providers/MovieProvider';
 import YearListModal from './YearListModal';
 
 const SearchSearchBar = memo(props => {
+  const {page} = props;
+  const requestPage = debounce(async () => {
+    const req = await onSearch(text, year, page);
+    req ? console.log({page}) : console.log({page});
+  }, 500);
+  useEffect(() => {
+    if (page == queriedPage) {
+      return null;
+    }
+    requestPage();
+  }, [page]);
   const {
-    queried: {text: searchtext},
+    queried: {text: searchtext, page: queriedPage},
   } = useMovieState();
   useEffect(() => {
     setText(searchtext);
@@ -17,10 +28,10 @@ const SearchSearchBar = memo(props => {
   const {onFilterSearch} = useMovieMethod();
 
   const [text, setText] = useState('');
-  const onSearch = debounce(async (t, y) => {
+  const onSearch = debounce(async (t, y, p) => {
     if (t.length > 0) {
       console.log('Searching');
-      const search = await onFilterSearch(t, y);
+      const search = await onFilterSearch(t, y, p);
       console.log({search});
     }
   }, 500);

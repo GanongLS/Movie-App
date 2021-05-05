@@ -94,6 +94,7 @@ const MovieProvider = memo(props => {
             text: action.text,
             year: action.year,
             movies: [...action.movies],
+            data: action.data,
           },
         };
 
@@ -145,7 +146,7 @@ const MovieProvider = memo(props => {
         const uri = `${route}?${apiKey}&language=${language}&region=${region}&page=1`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          console.log({request}); //* keep
+          // console.log({request}); //* keep
           // console.log(`category: ${category}`); //* keep
           dispatch({
             type: 'fetchMovies',
@@ -200,16 +201,17 @@ const MovieProvider = memo(props => {
             type: 'searchMovies',
             text,
             movies: [...request.data.results],
+            data: request.data,
           });
-          return request.data;
+          return true;
         } catch (err) {
           console.log(err);
           // const Err = fetchError(err, 'fetch'); //* keep
           // console.log({Err}); //* keep
         }
       },
-      onFilterSearch: async (text, year) => {
-        const uri = `/search/movie?${apiKey}&query=${text}&year=${year}`;
+      onFilterSearch: async (text, year, page) => {
+        const uri = `/search/movie?${apiKey}&query=${text}&year=${year}&page=${page}`;
         try {
           const request = await Axios.get(baseUrl + uri);
           console.log({request}); //* keep
@@ -218,6 +220,7 @@ const MovieProvider = memo(props => {
             text,
             year,
             movies: [...request.data.results],
+            data: request.data,
           });
           return true;
         } catch (err) {
