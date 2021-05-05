@@ -146,13 +146,33 @@ const MovieProvider = memo(props => {
         const uri = `${route}?${apiKey}&language=${language}&region=${region}&page=1`;
         try {
           const request = await Axios.get(baseUrl + uri);
-          // console.log({request}); //* keep
+          console.log({request}); //* keep
           // console.log(`category: ${category}`); //* keep
           dispatch({
             type: 'fetchMovies',
             category,
             movies: [...request.data.results],
           });
+          return true;
+        } catch (err) {
+          console.log(err);
+          // const Err = fetchError(err, 'fetch'); //* keep
+          // console.log({Err}); //* keep
+        }
+      },
+      getDetails: async (id) => {
+        // https://api.themoviedb.org/3/movie/{movie_id}?api_key=<<api_key>>&language=en-US
+       
+        const uri = `movie/${id}?${apiKey}`;
+        try {
+          const request = await Axios.get(baseUrl + uri);
+          console.log({request}); //* keep
+          // console.log(`category: ${category}`); //* keep
+          // dispatch({
+          //   type: 'fetchMovies',
+          //   category,
+          //   movies: [...request.data.results],
+          // });
           return true;
         } catch (err) {
           console.log(err);

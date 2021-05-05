@@ -17,7 +17,7 @@ const GridView = memo(props => {
   const {navigate} = useNavigation();
   const {list, height} = props;
   const [dataSource, setDataSource] = useState([]);
-  const {onSaveDetails} = useMovieMethod();
+  const {onSaveDetails, getDetails} = useMovieMethod();
 
   useEffect(() => {
     let items;
@@ -65,6 +65,7 @@ const GridView = memo(props => {
               onPress={() => {
                 onSaveDetails(item.movie);
                 navigate('Movie Details');
+                getDetails(item.id);
               }}
               style={{
                 flex: 1,
