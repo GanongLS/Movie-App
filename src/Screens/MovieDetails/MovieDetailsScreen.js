@@ -11,7 +11,8 @@ import {
 import colors from '../../Constants/colors';
 import {height} from '../../Constants/constants';
 import {useMovieState} from '../../Providers/MovieProvider';
-import BlackGradient from '../TopRate/Gradient';
+import BlackGradient, {DetailsGradient} from '../TopRate/Gradient';
+import moment from 'moment';
 
 const MovieDetailsScreen = memo(() => {
   const {details} = useMovieState();
@@ -19,6 +20,10 @@ const MovieDetailsScreen = memo(() => {
   useEffect(() => {
     console.log({details});
   }, [details]);
+
+  const releaseDate = details
+    ? moment(details.release_date, 'YYYY-MM-DD').format('DD MMM YYYY')
+    : null;
 
   return (
     <SafeAreaView style={styles.screenContainer}>
@@ -30,12 +35,12 @@ const MovieDetailsScreen = memo(() => {
           style={{
             ...styles.imageThumbnail,
           }}>
-          <BlackGradient>
+          <DetailsGradient>
             <View
               style={{
                 flex: 1,
                 justifyContent: 'flex-end',
-                paddingBottom: 25,
+                paddingBottom: 10,
                 paddingLeft: 10,
               }}>
               <Text
@@ -43,7 +48,6 @@ const MovieDetailsScreen = memo(() => {
                   fontSize: 28,
                   fontWeight: 'bold',
                   color: colors.white,
-                  marginBottom: 10,
                 }}>
                 {details ? details.title : ''}
               </Text>
@@ -52,8 +56,9 @@ const MovieDetailsScreen = memo(() => {
                   fontSize: 20,
                   fontWeight: 'bold',
                   color: colors.white,
+                  marginBottom: 10,
                 }}>
-                Popularitas: {details ? details.popularity : ''}
+                "{details ? details.tagline : ''}"
               </Text>
               <Text
                 style={{
@@ -61,10 +66,11 @@ const MovieDetailsScreen = memo(() => {
                   fontWeight: 'bold',
                   color: colors.white,
                 }}>
-                Tanggal Rilis: {details ? details.release_date : ''}
+                Diproduksi oleh:
+                {details ? ` ${details.production_companies[0].name}` : null}
               </Text>
             </View>
-          </BlackGradient>
+          </DetailsGradient>
         </ImageBackground>
         <View
           style={{
@@ -79,6 +85,24 @@ const MovieDetailsScreen = memo(() => {
               paddingBottom: 25,
               paddingLeft: 10,
             }}>
+            <View style={{marginBottom: 8}}>
+              <Text
+                style={{
+                  fontSize: 18,
+                  fontWeight: 'bold',
+                  color: colors.white,
+                }}>
+                Popularitas: {details ? details.popularity : ''}
+              </Text>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: colors.white,
+                }}>
+                Tanggal Rilis: {releaseDate}
+              </Text>
+            </View>
             <Text style={{color: colors.white, fontSize: 18}}>
               Sinopsis:
               {details
