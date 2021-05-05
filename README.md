@@ -63,7 +63,7 @@ Jika diberikan waktu lebih dari yang sekarang, dengan keadaan saya yang sekarang
 
 Namun, Jika ada waktu lebih untuk mengerjakan tugas ini (dengan syarat saya tidak memiliki beban kerja di perusahaan lain), saya bisa melakukan:
 
-1. Menambah method-method yang meningkatkan user experience seperti activity indicator saat loading.
+1. Menambah method-method yang meningkatkan user experience seperti activity indicator saat loading, error report saat fetch tidak berhasil atau error report lainnya.
 2. Jika ada waktu 2 pekan lagi, saya bisa mengubah global state manajemen yang disini saya menggunakan react.contex + react.useReducer menjadi react-redux. (ada beberapa alasan saya menggunakan state manajemen pilihan saya, akan saya jelaskan dibawah).
 3. Jika ditambah waktu 2 bulan lagi, saya bisa membuat versi react untuk aplikasi ini.
 4. Jika diberi waktu satu tahun, saya bisa membuat web apps dengan react.js yang memuat seluruh API yang disediakan oleh https://www.themoviedb.org/
@@ -75,6 +75,10 @@ Mengapa saya memilih menggunakan React.Context + React.useReducer dibanding reac
 3. Bisa membuat multi store tanpa banyak boilerplate. Saya sudah pernah membuat aplikasi dengan lebih dari 40 react.context.provider. Dan masih berjalan dengan sangat ringan. Kelemahan aplikasi dengan satu global state store adalah adanya banyak middleware, nesting state dan boiler plate.
 4. react.context + react.useProvider langsung di maintain oleh team developer react sehingga kemungkinan terjadi API yang tidak cocok sangat kecil.
 
-Saya sudah pernah menggunakan react-redux dalam karir saya, saya mempelajarinya selama kurang lebih 2 pekan penuh. Saya hanya perlu waktu 3 hari untuk memahami react.context. Dari pandangan subjective saya jika saya ingin mengerjakan proyek pribadi dengan menggunakan react.js atau react-native saya akan selalu mendahulukan react.context + react.useReducer dibanding react-redux. Akan tetapi, dalam pekerjaan saya akan mengikuti framework yang banyak digunakan oleh team. Selain itu, pengembangan dengan menggunakan react-redux tidak jauh berbeda dengan react.useReducer hanya berbeda di tingkat middleware yang digunakan sebagai state distributor.
+Saya sudah pernah menggunakan react-redux dalam karir saya, saya mempelajarinya selama kurang lebih 2 pekan penuh. Saya hanya perlu waktu 3 hari untuk memahami react.context. Dari pandangan subjective saya jika saya ingin mengerjakan proyek pribadi dengan menggunakan react.js atau react-native saya akan selalu mendahulukan react.context + react.useReducer dibanding react-redux. Akan tetapi, dalam pekerjaan saya akan tetap mengikuti framework yang banyak digunakan oleh team atau framework yang diharuskan oleh perusahaan.
 
-Seperti pengalaman saya sekarang saya bekerja dengan framework Flutter/Dart dan mengerjakan prototipe web untuk perusahaan menggunakan Flutter Web.
+Seperti pengalaman saya sekarang saya bekerja dengan framework Flutter/Dart dan mengerjakan prototipe web untuk perusahaan menggunakan Flutt,er Web, walaupun skill saya di react-native untuk sementara lebih baik dari skill saya di flutter/dart.
+
+Selain itu, pengembangan dengan menggunakan react-redux tidak jauh berbeda dengan react.useReducer hanya berbeda di tingkat middleware yang digunakan sebagai state distributor, sehingga akan lebih mudah saya menerapkannya.
+
+-Luki Subandi-
