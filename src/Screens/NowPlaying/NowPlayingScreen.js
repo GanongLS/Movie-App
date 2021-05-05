@@ -17,7 +17,7 @@ const NowPlayingScreen = memo(() => {
           Now Playing Movie
         </Text>
       </View>
-      <GridView list={nowShowing} height={height * 0.755} />
+      <GridView list={nowShowing} height={height * 0.795} />
     </SafeAreaView>
   );
 });

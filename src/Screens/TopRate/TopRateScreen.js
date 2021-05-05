@@ -16,7 +16,7 @@ const TopRateScreen = memo(() => {
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Top Rated Movie</Text>
       </View>
 
-      <GridView list={topRated} height={height * 0.755} />
+      <GridView list={topRated} height={height * 0.795} />
     </SafeAreaView>
   );
 });

@@ -14,7 +14,7 @@ const UpComingScreen = memo(() => {
       <View style={styles.title}>
         <Text style={{fontSize: 20, fontWeight: 'bold'}}>Up Coming Movie</Text>
       </View>
-      <GridView list={comingSoon} height={height * 0.755} />
+      <GridView list={comingSoon} height={height * 0.795} /> 
     </SafeAreaView>
   );
 });
