@@ -72,7 +72,7 @@ const MovieDetailsScreen = memo(() => {
                 }}>
                 Diproduksi oleh:
                 {details
-                  ? details.production_companies
+                  ? !isEmpty(details.production_companies)
                     ? ` ${details.production_companies[0].name}`
                     : null
                   : null}
