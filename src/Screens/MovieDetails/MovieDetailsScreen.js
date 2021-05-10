@@ -58,7 +58,11 @@ const MovieDetailsScreen = memo(() => {
                   color: colors.white,
                   marginBottom: 10,
                 }}>
-                "{details ? details.tagline : ''}"
+                {details
+                  ? details.tagline
+                    ? `\"${details.tagline}\"`
+                    : null
+                  : null}
               </Text>
               <Text
                 style={{
