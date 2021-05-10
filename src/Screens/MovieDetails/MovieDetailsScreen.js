@@ -67,7 +67,11 @@ const MovieDetailsScreen = memo(() => {
                   color: colors.white,
                 }}>
                 Diproduksi oleh:
-                {details ? ` ${details.production_companies[0].name}` : null}
+                {details
+                  ? details.production_companies
+                    ? ` ${details.production_companies[0].name}`
+                    : null
+                  : null}
               </Text>
             </View>
           </DetailsGradient>
