@@ -39,7 +39,8 @@ const MovieDetailsScreen = memo(() => {
             <View
               style={{
                 flex: 1,
-                justifyContent: 'flex-end',
+                justifyContent: 'flex-start',
+                alignItems: 'flex-end',
                 paddingBottom: 10,
                 paddingLeft: 10,
               }}>
@@ -49,8 +50,16 @@ const MovieDetailsScreen = memo(() => {
                   fontWeight: 'bold',
                   color: colors.white,
                 }}>
-                {details ? details.title : ''}
+                {details ? details.title.toUpperCase() : ''}
               </Text>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'flex-end',
+                paddingBottom: 10,
+                paddingLeft: 10,
+              }}>
               <Text
                 style={{
                   fontSize: 20,

@@ -13,9 +13,9 @@ const MovieSearchBar = memo(props => {
   const [text, setText] = useState('');
   const onSearch = debounce(async () => {
     if (text.length > 2) {
-      console.log('Searching');
+      // console.log('Searching');
       const search = await onSearchMovies(text);
-      console.log({search});
+      // console.log({search});
       search ? (navigate('Search'), setText('')) : null;
     }
   }, 500);
